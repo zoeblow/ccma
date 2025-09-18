@@ -1,0 +1,71 @@
+# Development files
+.gitignore
+.npmignore
+src/
+tsconfig.json
+.vscode/
+.idea/
+
+# Environment files (sensitive)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*
+
+# Claude Code sensitive configuration
+.claude/
+*.token
+*.key
+*.auth
+
+# Lock files (keep package.json only)
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
+# Documentation and project files
+CLAUDE.md
+README.md
+*.md
+docs/
+
+# Test files
+test/
+tests/
+__tests__/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+coverage/
+
+# Build configuration
+webpack.config.js
+rollup.config.js
+babel.config.js
+jest.config.js
+.eslintrc.*
+.prettierrc.*
+
+# IDE files
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Git files
+.git/
+.gitattributes
