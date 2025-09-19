@@ -1,6 +1,6 @@
 {
   "name": "ccma",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Claude Code Manager - A CLI tool to manage multiple Claude Code configurations and API endpoints.",
   "description_zh": "Claude Code Manager - 一个 CLI 工具，用于管理多个 Claude Code 配置 URL 和 API。",
   "main": "dist/index.js",
