@@ -494,7 +494,15 @@
                 <a href="#features" class="nav-link" data-zh="特性" data-en="Features">特性</a>
                 <a href="#installation" class="nav-link" data-zh="安装" data-en="Installation">安装</a>
                 <a href="#commands" class="nav-link" data-zh="命令" data-en="Commands">命令</a>
-                <a href="https://github.com/zoeblow/ccma" class="nav-link" target="_blank">GitHub</a>
+                <a href="https://github.com/zoeblow/ccma" class="nav-link" target="_blank">GitHub</a><a
+                    href="https://www.npmjs.com/package/ccma" class="nav-link" target="_blank"
+                    style="color: #cb3837;font-size: 0;">
+                    <svg height="25" width="25" viewBox="0 0 700 700" fill="currentColor" aria-hidden="true">
+                        <polygon fill="currentColor" points="0,700 700,700 700,0 0,0"></polygon>
+                        <polygon fill="#ffffff"
+                            points="150,550 350,550 350,250 450,250 450,550 550,550 550,150 150,150 "></polygon>
+                    </svg>
+                </a>
                 <button class="lang-toggle" onclick="toggleLanguage()">
                     <span id="lang-text">English</span>
                 </button>
@@ -534,12 +542,16 @@
                     <!-- Badges -->
                     <div class="hero-badges"
                         style="margin: 2rem 0 0; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
-                        <img src="https://img.shields.io/npm/v/ccma?style=flat-square&logo=npm&logoColor=white&color=cb3837"
-                            alt="NPM Version" style="border-radius: 4px;">
-                        <img src="https://img.shields.io/npm/dt/ccma?style=flat-square&logo=npm&logoColor=white&color=cb3837"
-                            alt="NPM Downloads" style="border-radius: 4px;">
-                        <img src="https://img.shields.io/github/stars/zoeblow/ccma?style=flat-square&logo=github&logoColor=white&color=333"
-                            alt="GitHub Stars" style="border-radius: 4px;">
+                        <a href="https://www.npmjs.com/package/ccma" target="_blank">
+                            <img src="https://img.shields.io/npm/v/ccma?style=flat-square&logo=npm&logoColor=white&color=cb3837"
+                                alt="NPM Version" style="border-radius: 4px;">
+                            <img src="https://img.shields.io/npm/dt/ccma?style=flat-square&logo=npm&logoColor=white&color=cb3837"
+                                alt="NPM Downloads" style="border-radius: 4px;">
+                        </a>
+                        <a href="https://www.github.com/zoeblow/ccma" target="_blank">
+                            <img src="https://img.shields.io/github/stars/zoeblow/ccma?style=flat-square&logo=github&logoColor=white&color=333"
+                                alt="GitHub Stars" style="border-radius: 4px;">
+                        </a>
                         <img src="https://img.shields.io/github/license/zoeblow/ccma?style=flat-square&logo=github&logoColor=white&color=green"
                             alt="License" style="border-radius: 4px;">
                         <img src="https://img.shields.io/github/issues/zoeblow/ccma?style=flat-square&logo=github&logoColor=white&color=333"
@@ -1031,7 +1043,7 @@
 
 
         // now year
-        document.getElementById('year').innerHTML = new Date().getFullYear();
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 

@@ -49,7 +49,7 @@
   "bugs": {
     "url": "https://github.com/zoeblow/ccma/issues"
   },
-  "homepage": "https://github.com/zoeblow/ccma#readme",
+  "homepage": "https://zoeblow.github.io/ccma",
   "files": [
     "dist/**/*",
     "README.md",
