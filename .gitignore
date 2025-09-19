@@ -90,9 +90,6 @@ Thumbs.db
 *.key
 *.auth
 
-# Build outputs
-lib/
-
 # Debug files
 debug.log
 *.debug

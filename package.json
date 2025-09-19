@@ -1,6 +1,6 @@
 {
   "name": "ccma",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "description": "Claude Code Manager - A CLI tool to manage multiple Claude Code configurations and API endpoints.",
   "description_zh": "Claude Code Manager - 一个 CLI 工具，用于管理多个 Claude Code 配置 URL 和 API。",
   "main": "dist/index.js",
@@ -22,16 +22,9 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\"",
     "typecheck": "tsc --noEmit",
-    "version:patch": "npm version patch --no-git-tag-version",
-    "version:minor": "npm version minor --no-git-tag-version",
-    "version:major": "npm version major --no-git-tag-version",
-    "pre-publish": "npm run build",
-    "post-version": "git add package.json && git commit -m \"chore: bump version\"",
-    "publish:patch": "npm run pre-publish && npm run version:patch && npm run post-version && npm publish",
-    "publish:minor": "npm run pre-publish && npm run version:minor && npm run post-version && npm publish",
-    "publish:major": "npm run pre-publish && npm run version:major && npm run post-version && npm publish",
-    "publish": "npm run publish:patch",
-    "publish:dry": "npm run pre-publish && npm pack"
+    "version:patch": "npm run version:patch",
+    "version:minor": "npm run version:minor",
+    "version:major": "npm run version:major"
   },
   "keywords": [
     "claude",

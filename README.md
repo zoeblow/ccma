@@ -47,6 +47,9 @@ ccma add default https://api.anthropic.com your-auth-token-here
 
 # 添加自定义端点配置
 ccma add custom https://your-custom-endpoint.com your-custom-token
+
+# 添加配置并指定模型
+ccma add production https://api.anthropic.com your-token claude-3-5-sonnet
 ```
 
 ### 2. 查看所有配置
@@ -65,6 +68,9 @@ ccma ls
 
   custom
     🔗 https://api.anthropic.com | 🔑 sk-1234567...7890abcdef
+
+  production
+    🔗 https://api.anthropic.com | 🔑 sk-1234567...7890abcdef | 🤖 claude-3-5-sonnet
 ```
 
 ### 3. 切换配置
@@ -77,11 +83,38 @@ ccma use custom
 ccma current
 ```
 
+## 💡 模型参数说明
+
+CCMA 支持在添加配置时指定可选的模型参数。当配置包含模型信息时，CCMA 会自动设置 `ANTHROPIC_MODEL` 环境变量。
+
+### 支持的模型
+
+- `claude-3-haiku` - 最快速、最经济的模型
+- `claude-3-sonnet` - 平衡性能与成本的模型
+- `claude-3-5-sonnet` - 最新、最强大的模型
+- `claude-3-opus` - 最高质量的模型
+
+### 使用示例
+
+```bash
+# 添加配置时指定模型
+ccma add dev https://api.anthropic.com your-token claude-3-haiku
+
+# 切换配置时，ANTHROPIC_MODEL 环境变量会自动设置
+ccma use dev
+# 环境变量中将包含：ANTHROPIC_MODEL=claude-3-haiku
+
+# 如果配置没有指定模型，ANTHROPIC_MODEL 变量会被移除
+ccma add simple https://api.anthropic.com your-token
+ccma use simple
+# 环境变量中不会包含 ANTHROPIC_MODEL
+```
+
 ## 📖 完整命令参考
 
 | 命令 | 描述 | 示例 |
 |------|------|------|
-| `ccma add <name> <url> <token>` | 添加新配置 | `ccma add prod https://api.anthropic.com sk-xxx` |
+| `ccma add <name> <url> <token> [model]` | 添加新配置 | `ccma add prod https://api.anthropic.com sk-xxx claude-3-5-sonnet` |
 | `ccma del <name>` | 删除配置 | `ccma del old-config` |
 | `ccma use [name]` | 切换配置 | `ccma use production` |
 | `ccma list` / `ccma ls` | 列出所有配置 | `ccma ls` |
@@ -96,28 +129,28 @@ ccma current
 
 ```bash
 # 开发环境
-ccma add dev https://dev-api.anthropic.com dev-token-123
+ccma add dev https://dev-api.anthropic.com dev-token-123 claude-3-haiku
 
 # 测试环境
-ccma add test https://test-api.anthropic.com test-token-456
+ccma add test https://test-api.anthropic.com test-token-456 claude-3-sonnet
 
 # 生产环境
-ccma add prod https://api.anthropic.com prod-token-789
+ccma add prod https://api.anthropic.com prod-token-789 claude-3-5-sonnet
 
 # 快速切换环境
-ccma use dev    # 开发时
-ccma use test   # 测试时
-ccma use prod   # 部署时
+ccma use dev    # 开发时（使用 haiku 节省成本）
+ccma use test   # 测试时（使用 sonnet 平衡性能）
+ccma use prod   # 部署时（使用 claude-3-5-sonnet 最佳性能）
 ```
 
 ### 多项目管理
 
 ```bash
-# 项目 A 配置
-ccma add project-a https://api.anthropic.com token-a
+# 项目 A 配置（使用标准模型）
+ccma add project-a https://api.anthropic.com token-a claude-3-sonnet
 
-# 项目 B 配置
-ccma add project-b https://custom-endpoint.com token-b
+# 项目 B 配置（使用高级模型）
+ccma add project-b https://custom-endpoint.com token-b claude-3-5-sonnet
 
 # 在项目间切换
 cd /path/to/project-a && ccma use project-a
@@ -134,8 +167,8 @@ echo "🚀 CCMA 演示开始..."
 
 # 添加演示配置
 echo "📝 添加演示配置..."
-ccma add demo-dev https://dev.anthropic.com demo-dev-token
-ccma add demo-prod https://api.anthropic.com demo-prod-token
+ccma add demo-dev https://dev.anthropic.com demo-dev-token claude-3-haiku
+ccma add demo-prod https://api.anthropic.com demo-prod-token claude-3-5-sonnet
 
 # 显示配置列表
 echo "📋 当前配置列表:"
@@ -159,7 +192,7 @@ echo "🎉 演示完成!"
 CCMA 使用以下优先级来管理配置：
 
 1. **本地配置文件** (最高优先级): `.claude/settings.local.json`
-2. **环境变量**: `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`
+2. **环境变量**: `ANTHROPIC_BASE_URL`, `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_MODEL`
 3. **默认配置** (最低优先级)
 
 ### 配置文件位置
@@ -178,7 +211,8 @@ CCMA 使用以下优先级来管理配置：
 {
   "env": {
     "ANTHROPIC_BASE_URL": "https://api.anthropic.com",
-    "ANTHROPIC_AUTH_TOKEN": "your-auth-token-here"
+    "ANTHROPIC_AUTH_TOKEN": "your-auth-token-here",
+    "ANTHROPIC_MODEL": "claude-3-5-sonnet"
   },
   "permissions": {
     "allow": [
@@ -302,6 +336,9 @@ ccma add default https://api.anthropic.com your-auth-token-here
 
 # Add custom endpoint configuration
 ccma add custom https://your-custom-endpoint.com your-custom-token
+
+# Add configuration with model specification
+ccma add production https://api.anthropic.com your-token claude-3-5-sonnet
 ```
 
 ### 2. View All Configurations
@@ -322,11 +359,38 @@ ccma use custom
 ccma current
 ```
 
+## 💡 Model Parameter
+
+CCMA supports specifying an optional model parameter when adding configurations. When a configuration includes model information, CCMA automatically sets the `ANTHROPIC_MODEL` environment variable.
+
+### Supported Models
+
+- `claude-3-haiku` - Fastest and most economical model
+- `claude-3-sonnet` - Balanced performance and cost model
+- `claude-3-5-sonnet` - Latest and most powerful model
+- `claude-3-opus` - Highest quality model
+
+### Usage Examples
+
+```bash
+# Add configuration with model specification
+ccma add dev https://api.anthropic.com your-token claude-3-haiku
+
+# When switching configurations, ANTHROPIC_MODEL environment variable is automatically set
+ccma use dev
+# Environment variables will include: ANTHROPIC_MODEL=claude-3-haiku
+
+# If configuration doesn't specify a model, ANTHROPIC_MODEL variable will be removed
+ccma add simple https://api.anthropic.com your-token
+ccma use simple
+# Environment variables will not include ANTHROPIC_MODEL
+```
+
 ## 📖 Command Reference
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `ccma add <name> <url> <token>` | Add new configuration | `ccma add prod https://api.anthropic.com sk-xxx` |
+| `ccma add <name> <url> <token> [model]` | Add new configuration | `ccma add prod https://api.anthropic.com sk-xxx claude-3-5-sonnet` |
 | `ccma del <name>` | Delete configuration | `ccma del old-config` |
 | `ccma use [name]` | Switch configuration | `ccma use production` |
 | `ccma list` / `ccma ls` | List all configurations | `ccma ls` |

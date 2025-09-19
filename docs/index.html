@@ -674,8 +674,72 @@
                         <span class="lang-content" data-lang="en">Quick Start</span>
                     </h3>
                     <div class="code-block">ccma add default https://api.anthropic.com your-token-here</div>
-                    <div class="code-block">ccma use default</div>
+                    <div class="code-block">ccma add production https://api.anthropic.com your-token claude-3-5-sonnet
+                    </div>
+                    <div class="code-block">ccma use production</div>
                     <div class="code-block">ccma current</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Parameter Section -->
+        <section class="model-params" style="padding: 4rem 0; background: white;">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="lang-content active" data-lang="zh">💡 模型参数说明</span>
+                    <span class="lang-content" data-lang="en">💡 Model Parameter</span>
+                </h2>
+
+                <div class="install-card">
+                    <p style="margin-bottom: 2rem; color: var(--text-secondary); font-size: 1.1rem;">
+                        <span class="lang-content active" data-lang="zh">CCMA 支持在添加配置时指定可选的模型参数。当配置包含模型信息时 <br /> CCMA
+                            会自动设置
+                            ANTHROPIC_MODEL 环境变量。</span>
+                        <span class="lang-content" data-lang="en">CCMA supports specifying an optional model parameter
+                            when adding configurations. When a configuration includes model information <br />
+                            CCMA automatically sets the ANTHROPIC_MODEL environment variable.</span>
+                    </p>
+
+                    <h3>
+                        <span class="lang-content active" data-lang="zh">🎯 支持的模型 以服务商提供为准</span>
+                        <span class="lang-content" data-lang="en">🎯 The supported models are subject to the service
+                            provider's provision</span>
+                    </h3>
+                    <ul style="margin: 1rem 0; padding-left: 2rem; color: var(--text-secondary);">
+                        <li><code>claude-3-haiku</code> <span class="lang-content active"
+                                data-lang="zh">最快速、最经济的模型</span><span class="lang-content" data-lang="en">Fastest and
+                                most economical model</span></li>
+                        <li><code>claude-3-sonnet</code> <span class="lang-content active"
+                                data-lang="zh">平衡性能与成本的模型</span><span class="lang-content" data-lang="en">Balanced
+                                performance and cost model</span></li>
+                        <li><code>claude-3-5-sonnet</code> <span class="lang-content active"
+                                data-lang="zh">最新、最强大的模型</span><span class="lang-content" data-lang="en">Latest and most
+                                powerful model</span></li>
+                        <li><code>claude-3-opus</code> <span class="lang-content active"
+                                data-lang="zh">最高质量的模型</span><span class="lang-content" data-lang="en">Highest quality
+                                model</span></li>
+                    </ul>
+
+                    <h3>
+                        <span class="lang-content active" data-lang="zh">🚀 使用示例</span>
+                        <span class="lang-content" data-lang="en">🚀 Usage Examples</span>
+                    </h3>
+                    <div class="code-block">ccma add dev https://api.anthropic.com your-token claude-3-haiku</div>
+                    <div class="code-block">ccma use dev</div>
+                    <p style="margin: 1rem 0; color: var(--text-secondary); font-style: italic;">
+                        <span class="lang-content active" data-lang="zh">#
+                            环境变量中将包含：ANTHROPIC_MODEL=claude-3-haiku</span>
+                        <span class="lang-content" data-lang="en"># Environment variables will include:
+                            ANTHROPIC_MODEL=claude-3-haiku</span>
+                    </p>
+
+                    <div class="code-block">ccma add simple https://api.anthropic.com your-token</div>
+                    <div class="code-block">ccma use simple</div>
+                    <p style="margin: 1rem 0; color: var(--text-secondary); font-style: italic;">
+                        <span class="lang-content active" data-lang="zh"># 环境变量中不会包含 ANTHROPIC_MODEL</span>
+                        <span class="lang-content" data-lang="en"># Environment variables will not include
+                            ANTHROPIC_MODEL</span>
+                    </p>
                 </div>
             </div>
         </section>
@@ -707,12 +771,12 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><code>ccma add &lt;name&gt; &lt;url&gt; &lt;token&gt;</code></td>
+                            <td><code>ccma add &lt;name&gt; &lt;url&gt; &lt;token&gt; [model]</code></td>
                             <td>
                                 <span class="lang-content active" data-lang="zh">添加新配置</span>
                                 <span class="lang-content" data-lang="en">Add new configuration</span>
                             </td>
-                            <td><code>ccma add production https://api.anthropic.com sk-xxx</code></td>
+                            <td><code>ccma add prod https://api.anthropic.com sk-xxx claude-3-5-sonnet</code></td>
                         </tr>
                         <tr>
                             <td><code>ccma del &lt;name&gt;</code></td>

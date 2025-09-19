@@ -48,11 +48,11 @@ program
   .version(packageJson.version);
 
 program
-  .command('add <name> <url> <token>')
+  .command('add <name> <url> <token> [model]')
   .description(i18n.t('commands.add.description'))
-  .action((name: string, url: string, token: string) => {
+  .action((name: string, url: string, token: string, model?: string) => {
     try {
-      configManager.addConfig(name, url, token);
+      configManager.addConfig(name, url, token, model);
       console.log(i18n.t('commands.add.success', { name }));
     } catch (error) {
       console.error(i18n.t('commands.add.error', { error: String(error) }));
@@ -137,7 +137,11 @@ program
         const status = config.name === current ? i18n.t('commands.list.current') : '';
         console.log(`${marker}${config.name}${status}`);
         const formattedToken = configManager.formatToken(config.token);
-        console.log(i18n.t('urlAndToken', { url: config.url, token: formattedToken }));
+        if (config.model) {
+          console.log(i18n.t('urlTokenAndModel', { url: config.url, token: formattedToken, model: config.model }));
+        } else {
+          console.log(i18n.t('urlAndToken', { url: config.url, token: formattedToken }));
+        }
         console.log('');
       });
     } catch (error) {
@@ -155,7 +159,11 @@ program
       if (config) {
         console.log(i18n.t('commands.current.active', { name: config.name }));
         const formattedToken = configManager.formatToken(config.token);
-        console.log(i18n.t('urlAndToken', { url: config.url, token: formattedToken }));
+        if (config.model) {
+          console.log(i18n.t('urlTokenAndModel', { url: config.url, token: formattedToken, model: config.model }));
+        } else {
+          console.log(i18n.t('urlAndToken', { url: config.url, token: formattedToken }));
+        }
         console.log('');
         configManager.displayEnvironmentInstructions(config, i18n);
       } else {
