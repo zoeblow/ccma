@@ -45,7 +45,11 @@ function getConfigChoices(): string[] {
 program
   .name('ccma')
   .description(i18n.t('program.description'))
-  .version(packageJson.version);
+  .version(packageJson.version, '-V, --version', 'display version number')
+  .option('-v, --version', 'display version number', () => {
+    console.log(packageJson.version);
+    process.exit(0);
+  });
 
 program
   .command('add <name> <url> <token> [model]')
